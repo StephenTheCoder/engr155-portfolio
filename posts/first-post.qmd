@@ -1,0 +1,9 @@
+---
+title: "Initial Reflections"
+description: "First week is kind of scary, lots of work to be done and I feel a little rushed to finish debugging my soldering before the weekend starts. Really want to get this lab set up and ready so I have the weekend to finish it up. Scared but also a little excited to get this done."
+author: "Stephen Kanti Mahanty"
+date: "9/2/2026"
+categories:
+  - reflection
+draft: false
+---

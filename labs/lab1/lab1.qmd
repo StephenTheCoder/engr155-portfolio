@@ -25,7 +25,18 @@ Explaining how I approached the design of this assignment from both a software a
 
 The on-board high-speed oscillator (`HSOSC`) from the iCE40 UltraPlus primitive library was used to generate a clock signal at 24 MHz. Then, a counter was used to divide the high frequency clock signal down so that the blinking frequency could be easily visualized using one of the on-board LEDs. The design was developed using a simple clock divider module which drives the external LED.
 
+To calculate this value and the maximum count, the following formula was used:
+$$ f_{out} = \frac{f_{HSOSC}}{\text{max\_count}} = \dfrac{48000000}{4999999} = 2.4 \text{Hz} $$
+
+Where $f_{out}$ is the desired output frequency, $f_{in}$ is the input frequency, and max_count is the maximum count value for the counter. The maximum count value was calculated to be 4,999,999 such that this equation works.
+
 The hardware was soldered through a series of steps to ensure that the FPGA board was functioning correctly. The LEDs were verified to be functioning as expected. The seven-segment display circuit was designed using a set of resistors that limited the current to the display. The power and connections to the FPGA was done through a breadboard connector and a ribbon cable.
+
+The resistor calculations are done through the seven-segment datasheet. Knowing $V_{dd} = 3.3V$, $V_{f} = 2.0V$, and $I_{f} = 8mA$, the resistor value is calculated as follows:
+
+$$ R = \frac{V_{dd} - V_{f}}{I_{f}} = \frac{3.3V - 2.0V}{8mA} = \frac{1.3V}{8mA} = 162.5 \Omega $$
+
+The closest stock value is 150 $\Omega$, which is what was used in the design.
 
 To design the two LEDs controlled by switches, the given truth table was analyzed to determine the logic connecting the switches to the LEDs. The logic was implemented using a simple combinational logic circuit. The design was then tested using a testbench simulation in QuestaSim to verify that the LEDs turned on and off as expected based on the state of the switches.
 
@@ -44,7 +55,7 @@ The source code for the project can be found in the associated [Github repositor
 ### Block Diagram
 
 ::: {#fig-block-diagram}
-![](images/block-diagram.png)
+![](images/blockdiagram.png)
 
 Block diagram of the Verilog design.
 :::
@@ -59,7 +70,54 @@ The block diagram in @fig-block-diagram demonstrates the overall architecture of
 Schematic of the physical circuit.
 :::
 
-@fig-schematic shows the physical layout of the design. It shows logic gates and connections between all the inputs and outputs.
+@fig-schematic shows the physical layout of the design. It shows logic gates and connections between all the inputs and outputs. For the big block in the middle describing the seven-segment display, the full logic code is below, but it is pretty messy so I have it below:
+
+<details>
+<summary>Click to reveal code</summary>
+
+```
+assign seg[0] =
+       (~s[3] & ~s[1] &  s[0])
+     | ( s[3] &  s[2] & ~s[0])
+     | ( s[3] &  s[1] &  s[0])
+     | ( s[2] &  s[1] & ~s[0]);
+
+assign seg[1] =
+       (~s[3] & ~s[2] & ~s[1] &  s[0])
+     | (~s[3] &  s[2] & ~s[1] & ~s[0])
+     | ( s[3] & ~s[2] &  s[1] &  s[0])
+     | ( s[3] &  s[2] & ~s[1] &  s[0]);
+
+assign seg[2] =
+       (~s[3] & ~s[2] & ~s[1] &  s[0])
+     | (~s[3] & ~s[2] &  s[1] & ~s[0])
+     | ( s[3] &  s[2] &  s[1])
+     | ( s[3] &  s[2] & ~s[0]);
+
+assign seg[3] =
+       (~s[3] &  s[2] & ~s[1] & ~s[0])
+     | ( s[3] & ~s[2] &  s[1] & ~s[0])
+     | (~s[2] & ~s[1] &  s[0])
+     | ( s[2] &  s[1] &  s[0]);
+
+assign seg[4] =
+       (~s[3] &  s[2] & ~s[1])
+     | (~s[3] &  s[1] &  s[0])
+     | ( s[3] & ~s[2] & ~s[1] & s[0]);
+
+assign seg[5] =
+       (~s[3] & ~s[2] &  s[1])
+     | (~s[3] &  s[1] &  s[0])
+     | ( s[3] &  s[2] & ~s[1] & s[0]);
+
+assign seg[6] =
+       (~s[3] & ~s[2] & ~s[1])
+     | (~s[3] &  s[2] &  s[1] &  s[0])
+     | ( s[3] &  s[2] & ~s[1] & ~s[0]);
+```
+
+</details>
+
 
 ## Results and Discussion
 
@@ -99,6 +157,9 @@ The design successfully blinked an external LED using the on-board high-speed os
 
 I asked GPT 5.5 Medium. It gave out the following:
 
+<details>
+<summary>Click to reveal spoiler</summary>
+
 ```
 module blinky (
     output logic led
@@ -134,3 +195,11 @@ module blinky (
 
 endmodule
 ```
+
+</details>
+
+The code was correct and worked fine in Radiant, and was able to synthesize properly. The quality of the output was good, and the code was well-structured and easy to understand. The code used a high-frequency oscillator to generate a clock signal, which was then divided down using a counter to achieve the desired blinking frequency for the LED. This is the same way that was used in the original design. Overall, the code was effective in achieving the desired functionality of blinking an LED at a specified frequency.
+
+One new line was the `logic [$clog2(MAX_COUNT + 1)-1:0] counter = '0;` line, which was a more efficient way to declare the counter variable. I had not learned about this before, so it was interesting to look at and worth it to use in the future.
+
+I think using an LLM to help me code is very useful, as I can analyze the code and learn from it whilst being more productive. I can also use it to help me debug my code, as it can point out errors and suggest fixes. Overall, I think using an LLM to help me code is a unique idea and I may plan to use it in the future. In the future, I will try to optimize my LLM output to conserve tokens whilst also making proper statements.

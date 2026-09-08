@@ -7,6 +7,8 @@
   },
   {
     "listing": "/labs.html",
-    "items": []
+    "items": [
+      "/labs/index.html"
+    ]
   }
 ]

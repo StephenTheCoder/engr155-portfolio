@@ -1,7 +1,9 @@
 ---
 title: "E155 Labs"
 listing:
-  contents: labs
+  contents:
+    path: labs
+    recursive: true
   sort: "date desc"
   type: default
   categories: false

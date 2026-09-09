@@ -296,6 +296,7 @@ Figure&nbsp;2: Schematic of the physical circuit.
 </figure>
 </div>
 <p><a href="#fig-schematic" class="quarto-xref">Figure&nbsp;2</a> shows the physical layout of the design. It shows logic gates and connections between all the inputs and outputs. For the big block in the middle describing the seven-segment display, the full logic code is below, but it is pretty messy so I have it below:</p>
+<details>
 <pre><code>assign seg[0] =
        (~s[3] &amp; ~s[1] &amp;  s[0])
      | ( s[3] &amp;  s[2] &amp; ~s[0])
@@ -334,7 +335,7 @@ assign seg[6] =
        (~s[3] &amp; ~s[2] &amp; ~s[1])
      | (~s[3] &amp;  s[2] &amp;  s[1] &amp;  s[0])
      | ( s[3] &amp;  s[2] &amp; ~s[1] &amp; ~s[0]);</code></pre>
-
+</details>
 </section>
 </section>
 <section id="results-and-discussion" class="level2">

@@ -264,7 +264,12 @@ window.Quarto = {
 <div id="fig-block-diagram" class="quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-fig figure">
 <div aria-describedby="fig-block-diagram-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<details>
+<summary>
+Click to reveal block diagram
+</summary>
 <img src="images/lab1/blockdiagram.png" class="img-fluid figure-img">
+</details>
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-block-diagram-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 Figure&nbsp;1: Block diagram of the Verilog design.
@@ -275,16 +280,21 @@ Figure&nbsp;1: Block diagram of the Verilog design.
 </section>
 <section id="schematic" class="level3">
 <h3 class="anchored" data-anchor-id="schematic">Schematic</h3>
+<details>
+<summary>
+Click to reveal schematic
+</summary>
 <div id="fig-schematic" class="quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-fig figure">
 <div aria-describedby="fig-schematic-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <img src="images/lab1/schematic.png" class="img-fluid figure-img">
-</div>
+</div></figure></div></details>
+</section></section></main></div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-schematic-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 Figure&nbsp;2: Schematic of the physical circuit.
 </figcaption>
-</figure>
-</div>
+
+
 <p><a href="#fig-schematic" class="quarto-xref">Figure&nbsp;2</a> shows the physical layout of the design. It shows logic gates and connections between all the inputs and outputs. For the big block in the middle describing the seven-segment display, the full logic code is below, but it is pretty messy so I have it below:</p>
 <details>
 <summary>
@@ -329,10 +339,10 @@ assign seg[6] =
      | (~s[3] &amp;  s[2] &amp;  s[1] &amp;  s[0])
      | ( s[3] &amp;  s[2] &amp; ~s[1] &amp; ~s[0]);</code></pre>
 </details>
-</section>
-</section>
+
+
 <section id="results-and-discussion" class="level2">
-<h2 class="anchored" data-anchor-id="results-and-discussion">Results and Discussion</h2>
+<h2 data-anchor-id="results-and-discussion">Results and Discussion</h2>
 <div class="callout callout-style-default callout-note callout-titled" title="Results and Discussion">
 <div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
@@ -349,28 +359,43 @@ assign seg[6] =
 <p>I did accomplish all of the prescribed tasks. The design successfully blinked an external LED using the on-board high-speed oscillator. The design also successfully displayed numbers from 0 to 15 on the seven-segment display based on the state of the four switches. The two LEDs controlled by switches also functioned as expected based on the truth table provided.</p>
 <p>Given more time, I would have liked to implement a more sophisticated counter to allow for a more precise output frequency. I would also want to add a second seven-segment display to display more numbers if I can. The current design only allows for the clock to be divided by powers of two, which limits the flexibility of the design. The design is still fast</p>
 <section id="testbench-simulation" class="level3">
-<h3 class="anchored">Testbench Simulation</h3>
-<div id="fig-testbench-top" class="quarto-float quarto-figure quarto-figure-center anchored">
+<h3>Testbench Simulation</h3>
+<details>
+<summary>
+Click to reveal testbench
+</summary>
+<div id="fig-testbench-top" class="quarto-float quarto-figure quarto-figure-center">
 <figure class="quarto-float quarto-float-fig figure">
 <div aria-describedby="fig-testbench-top-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<p><img src="images/lab1/testbenchtop.png" class="img-fluid figure-img"></p>
-<div id="fig-testbench-counter" class="quarto-float quarto-figure quarto-figure-center anchored">
+<img src="images/lab1/testbenchtop.png" class="img-fluid figure-img">
+</div></figure></div></details>
+<details>
+<summary>
+Click to reveal testbench
+</summary>
+<div id="fig-testbench-counter" class="quarto-float quarto-figure quarto-figure-center">
 <figure class="quarto-float quarto-subfloat-fig figure">
 <div aria-describedby="fig-testbench-counter-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<p><img src="images/lab1/testbenchcounter.png" class="img-fluid figure-img" data-ref-parent="fig-testbench-top"></p>
-<div id="fig-testbench-seg" class="quarto-float quarto-figure quarto-figure-center anchored">
+<img src="images/lab1/testbenchcounter.png" class="img-fluid figure-img" data-ref-parent="fig-testbench-top">
+</div></figure></div></details>
+<details>
+<summary>
+Click to reveal testbench
+</summary>
+<div id="fig-testbench-seg" class="quarto-float quarto-figure quarto-figure-center">
 <figure class="quarto-float quarto-subfloat-fig figure">
 <div aria-describedby="fig-testbench-seg-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <img src="images/lab1/testbenchseg.png" class="img-fluid figure-img" data-ref-parent="fig-testbench-top">
-</div>
+</div></figure></div></details>
+
 <figcaption class="quarto-float-caption-bottom quarto-subfloat-caption quarto-subfloat-fig" id="fig-testbench-seg-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 (a) (Top) Screenshot of the QuestaSim simulation for the top-level module. (Middle) Screenshot of the QuestaSim simulation for the counter module. (Bottom) Screenshot of the QuestaSim simulation for the seven-segment display module.
 </figcaption>
-</figure>
-</div>
+
+
 <p>The design met all intended design objectives. <a href="#fig-testbench-top" class="quarto-xref">Figure&nbsp;3</a> shows a screenshot of the top-level QuestaSim simulation. If a more precise output frequency was desired, a more sophisticated counter could be developed. The current design only allows for the clock to be divided by powers of two.</p>
 <section id="conclusion" class="level2">
-<h2 class="anchored" data-anchor-id="conclusion">Conclusion</h2>
+<h2 data-anchor-id="conclusion">Conclusion</h2>
 <div class="callout callout-style-default callout-note callout-titled" title="Conclusion">
 <div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
@@ -387,7 +412,7 @@ assign seg[6] =
 <p>The design successfully blinked an external LED using the on-board high-speed oscillator. I spent a total of twenty five hours working on this lab.</p>
 </section>
 <section id="ai-prototype-summary" class="level2">
-<h2 class="anchored" data-anchor-id="ai-prototype-summary">AI Prototype Summary</h2>
+<h2 data-anchor-id="ai-prototype-summary">AI Prototype Summary</h2>
 <p>I asked GPT 5.5 Medium. It gave out the following:</p>
 <details>
 <summary>
@@ -433,22 +458,22 @@ endmodule</code></pre>
 
 
 </section>
-</div>
+
 <figcaption class="quarto-float-caption-bottom quarto-subfloat-caption quarto-subfloat-fig" id="fig-testbench-counter-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 (b)
 </figcaption>
-</figure>
-</div>
-</div>
+
+
+
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig quarto-uncaptioned" id="fig-testbench-top-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 Figure&nbsp;3
 </figcaption>
-</figure>
-</div>
+
+
 </section>
 </section>
 
-</main> <!-- /main -->
+ <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">
   window.document.addEventListener("DOMContentLoaded", function (event) {
     const icon = "";
@@ -849,7 +874,7 @@ Figure&nbsp;3
     }
   });
   </script>
-</div> <!-- /content -->
+ <!-- /content -->
 
 
 

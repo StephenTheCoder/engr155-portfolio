@@ -26,9 +26,9 @@ Explaining how I approached the design of this assignment from both a software a
 The on-board high-speed oscillator (`HSOSC`) from the iCE40 UltraPlus primitive library was used to generate a clock signal at 24 MHz. Then, a counter was used to divide the high frequency clock signal down so that the blinking frequency could be easily visualized using one of the on-board LEDs. The design was developed using a simple clock divider module which drives the external LED.
 
 To calculate this value and the maximum count, the following formula was used:
-$$ f_{out} = \frac{f_{HSOSC}}{\text{max\_count}} = \dfrac{48000000}{4999999} = 2.4 \text{Hz} $$
+$$ f_{out} = \frac{f_{HSOSC}}{\text{max\_count}} = \dfrac{48000000}{5000000} = 2.4 \text{Hz} $$
 
-Where $f_{out}$ is the desired output frequency, $f_{in}$ is the input frequency, and max_count is the maximum count value for the counter. The maximum count value was calculated to be 4,999,999 such that this equation works.
+Where $f_{out}$ is the desired output frequency, $f_{in}$ is the input frequency, and max_count is the maximum count value for the counter. The maximum count value was calculated to be 4,999,999 such that this equation works (as counter starts from 0).
 
 The hardware was soldered through a series of steps to ensure that the FPGA board was functioning correctly. The LEDs were verified to be functioning as expected. The seven-segment display circuit was designed using a set of resistors that limited the current to the display. The power and connections to the FPGA was done through a breadboard connector and a ribbon cable.
 
@@ -55,7 +55,10 @@ The source code for the project can be found in the associated [Github repositor
 ### Block Diagram
 
 ::: {#fig-block-diagram}
-![](images/blockdiagram.png)
+<details>
+<summary>Click to reveal block diagram</summary>
+![](images/lab1/blockdiagram.png)
+</details>
 
 Block diagram of the Verilog design.
 :::
@@ -65,7 +68,10 @@ The block diagram in @fig-block-diagram demonstrates the overall architecture of
 ### Schematic
 
 ::: {#fig-schematic}
-![](images/schematic.png)
+<details>
+<summary>Click to reveal schematic</summary>
+![](images/lab1/schematic.png)
+</details>
 
 Schematic of the physical circuit.
 :::
@@ -73,7 +79,7 @@ Schematic of the physical circuit.
 @fig-schematic shows the physical layout of the design. It shows logic gates and connections between all the inputs and outputs. For the big block in the middle describing the seven-segment display, the full logic code is below, but it is pretty messy so I have it below:
 
 <details>
-<summary>Click to reveal code</summary>
+
 
 ```
 assign seg[0] =
@@ -131,17 +137,24 @@ Given more time, I would have liked to implement a more sophisticated counter to
 
 ### Testbench Simulation
 
-::: {#fig-testbench-top}
-![](images/testbenchtop.png)
+<details>
+<summary>Click to reveal testbench</summary>
+![](images/lab1/testbenchtop.png)
+</details>
 
-::: {#fig-testbench-counter}
-![](images/testbenchcounter.png)
+<details>
+<summary>Click to reveal testbench</summary>
+![](images/lab1/testbenchcounter.png)
+</details>
 
-::: {#fig-testbench-seg}
-![](images/testbenchseg.png)
+<details>
+<summary>Click to reveal testbench</summary>
+![](images/lab1/testbenchseg.png)
+</details>
+
 
 (Top) Screenshot of the QuestaSim simulation for the top-level module. (Middle) Screenshot of the QuestaSim simulation for the counter module. (Bottom) Screenshot of the QuestaSim simulation for the seven-segment display module.
-:::
+
 
 The design met all intended design objectives. @fig-testbench-top shows a screenshot of the top-level QuestaSim simulation. If a more precise output frequency was desired, a more sophisticated counter could be developed. The current design only allows for the clock to be divided by powers of two.
 

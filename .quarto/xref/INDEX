@@ -17,5 +17,11 @@
   },
   "labs.qmd": {
     "labs.html": "fa068225"
+  },
+  "labs/lab1.qmd": {
+    "index.html": "c990c4a5"
+  },
+  "labs/lab2.qmd": {
+    "index.html": "2cfc7c4e"
   }
 }

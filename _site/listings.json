@@ -8,7 +8,8 @@
   {
     "listing": "/labs.html",
     "items": [
-      "/labs/lab1/index.html"
+      "/labs/index.html",
+      "/labs/index.html"
     ]
   }
 ]

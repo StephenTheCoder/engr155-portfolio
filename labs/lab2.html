@@ -252,7 +252,7 @@ window.Quarto = {
 <p>For the keypad scanner, resistors were used for the transistors, the columns, and the LEDs. The resistors for the transistors were calculated using the same formula as above:</p>
 <p><span class="math display">\[ R = \frac{3.3 V - 0.95 V}{5 mA} = \frac{2.35 V}{5 mA} = 470 \Omega \]</span></p>
 <p>The closest stock value is 470 <span class="math inline">\(\Omega\)</span>, which is what was used in the design.</p>
-<p>The resistor for the column outputs was set to <span class="math inline">\(R = 10 k\Omega\)</span> to limit the current through the column lines. The resistors for the LEDs were set to <span class="math inline">\(R = 500 \Omega\)</span> to ensure that the LEDs operate within their safe current limits.</p>
+<p>The resistor for the column outputs was set to <span class="math inline">\(R = 10 k\Omega\)</span> to pull up the columns. The resistors for the LEDs were set to <span class="math inline">\(R = 330 \Omega\)</span> to ensure that the LEDs operate within their safe current limits.</p>
 <p>To design the two LEDs controlled by switches, the given truth table was analyzed to determine the logic connecting the switches to the LEDs. The logic was implemented using a simple combinational logic circuit. The design was then tested using a testbench simulation in QuestaSim to verify that the LEDs turned on and off as expected based on the state of the switches.</p>
 <p>To design the software for the dual seven-segment display, the datasheets were analyzed and a seven-segment decoder was added. The idea is that the four switches comprise of the four bits of a binary number, and the seven-segment decoder converts that binary number into the appropriate signals to drive the seven-segment display. The design was then tested using a testbench simulation in QuestaSim to verify that the correct numbers were displayed on the seven-segment display based on the state of the switches.</p>
 </section>
@@ -274,56 +274,41 @@ window.Quarto = {
 <p>The source code for the project can be found in the associated <a href="https://github.com/ENGR155/engr155-lab2/tree/main">Github repository</a>.</p>
 <section id="block-diagram" class="level3">
 <h3 class="anchored" data-anchor-id="block-diagram">Block Diagram</h3>
-<div id="fig-block-diagram-lab2" class="quarto-float quarto-figure quarto-figure-center anchored">
+<div id="fig-block-diagram" class="quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-fig figure">
-<div aria-describedby="fig-block-diagram-lab2-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<div aria-describedby="fig-block-diagram-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <details>
 <summary>
 Click to reveal block diagram
 </summary>
-<img src="images/lab2/blockdiagram.png" class="img-fluid figure-img">
+<img src="images/lab1/blockdiagram.png" class="img-fluid figure-img">
 </details>
 </div>
-<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-block-diagram-lab2-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-block-diagram-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 Figure&nbsp;1: Block diagram of the Verilog design.
 </figcaption>
 </figure>
 </div>
-<p>The block diagram in <a href="#fig-block-diagram-lab2" class="quarto-xref">Figure&nbsp;1</a> demonstrates the overall architecture of the design. The design consists of a block connected to the seven-segment dispaly and resistors connecting the seven-segment LEDs to the FPGA.</p>
+<p>The block diagram in <a href="#fig-block-diagram" class="quarto-xref">Figure&nbsp;1</a> demonstrates the overall architecture of the design. The design consists of a block connected to the seven-segment dispaly and resistors connecting the seven-segment LEDs to the FPGA.</p>
 </section>
 <section id="schematic" class="level3">
 <h3 class="anchored" data-anchor-id="schematic">Schematic</h3>
-<div id="fig-schematic-segment" class="quarto-float quarto-figure quarto-figure-center anchored">
+<div id="fig-schematic" class="quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-fig figure">
-<div aria-describedby="fig-schematic-segment-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<div aria-describedby="fig-schematic-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <details>
 <summary>
 Click to reveal schematic
 </summary>
-<img src="images/lab2/schematic1.png" class="img-fluid figure-img">
+<img src="images/lab1/schematic.png" class="img-fluid figure-img">
 </details>
 </div>
-<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-schematic-segment-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Figure&nbsp;2: Schematic of the seven segment circuit.
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-schematic-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;2: Schematic of the physical circuit.
 </figcaption>
 </figure>
 </div>
-<div id="fig-schematic-keypad" class="quarto-float quarto-figure quarto-figure-center anchored">
-<figure class="quarto-float quarto-float-fig figure">
-<div aria-describedby="fig-schematic-keypad-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<details>
-<summary>
-Click to reveal schematic
-</summary>
-<img src="images/lab2/schematicscanner.png" class="img-fluid figure-img">
-</details>
-</div>
-<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-schematic-keypad-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Figure&nbsp;3: Schematic of the scanner circuit.
-</figcaption>
-</figure>
-</div>
-<p><a href="#fig-schematic-segment" class="quarto-xref">Figure&nbsp;2</a> and <a href="#fig-schematic-keypad" class="quarto-xref">Figure&nbsp;3</a> show the physical layout of the design. It shows logic gates and connections between all the inputs and outputs. The bottom image is the scanner circuit for the keypad.</p>
+<p><a href="#fig-schematic" class="quarto-xref">Figure&nbsp;2</a> shows the physical layout of the design. It shows logic gates and connections between all the inputs and outputs. For the big block in the middle describing the seven-segment display, the full logic code is below, but it is pretty messy so I have it below:</p>
 </section>
 </section>
 <section id="results-and-discussion" class="level2">
@@ -349,16 +334,22 @@ Figure&nbsp;3: Schematic of the scanner circuit.
 <summary>
 Click to reveal testbench
 </summary>
-<img src="images/lab2/testbenchtop.png" class="img-fluid">
+<img src="images/lab1/testbenchtop.png" class="img-fluid">
 </details>
 <details>
 <summary>
 Click to reveal testbench
 </summary>
-<img src="images/lab2/testbenchscanner.png" class="img-fluid">
+<img src="images/lab1/testbenchcounter.png" class="img-fluid">
 </details>
-<p>(Top) Screenshot of the QuestaSim simulation for the top-level module. (Bottom) Screenshot of the QuestaSim simulation for the scanner module.</p>
-<p>The design met all intended design objectives. <strong>?@fig-testbench-top</strong> shows a screenshot of the top-level QuestaSim simulation. This was done to verify that the LEDs outputs work as well as the columns.</p>
+<details>
+<summary>
+Click to reveal testbench
+</summary>
+<img src="images/lab1/testbenchseg.png" class="img-fluid">
+</details>
+<p>(Top) Screenshot of the QuestaSim simulation for the top-level module. (Middle) Screenshot of the QuestaSim simulation for the counter module. (Bottom) Screenshot of the QuestaSim simulation for the seven-segment display module.</p>
+<p>The design met all intended design objectives. <strong>?@fig-testbench-top</strong> shows a screenshot of the top-level QuestaSim simulation. If a more precise output frequency was desired, a more sophisticated counter could be developed. The current design only allows for the clock to be divided by powers of two.</p>
 </section>
 </section>
 <section id="conclusion" class="level2">

@@ -1191,13 +1191,6 @@ Click to reveal Prompt 3
 <p>The code was correct and worked fine in Radiant, and was able to synthesize properly. The quality of the output was good, and the code was well-structured and easy to understand. The code used a high-frequency oscillator to generate a clock signal, which was used to detect the keypad and add it to the seven segment display. I think the AI is pretty useful for testing these pieces of code and getting it correct.</p>
 <p>I think that the monolithic prompt was worse than the decomposed prompts because each decomposed prompt was able to correctly follow each FSM in more detail and was also stricter to each FSM, further following the specs. Modularizing the prompts also improved readability since it was a lot easier to look at each FSM and read it with correct variable names (while monolithic values were more general since it was all in one big prompt). The FSM structures were generally helpful and simple to understand, but there were definitely some advanced structures in the code that I did not know exactly.</p>
 <p>I think using an LLM to help me code is very useful, as I can analyze the code and learn from it whilst being more productive. I can also use it to help me debug my code, as it can point out errors and suggest fixes. Overall, I think using an LLM to help me code is a unique idea and I may plan to use it in the future. In the future, I will try to optimize my LLM output to conserve tokens whilst also making proper statements.</p>
-<p>Consider discussing:</p>
-<pre><code>How did the monolithic prompt perform versus the decomposed prompts?
-Did modularizing the prompts improve correctness, synthesis success, or readability?
-Did Prototype A modularize the design in the way you expected without explicit instruction?
-What FSM structures and SystemVerilog idioms did the LLM use that were helpful or surprising?
-What issues did you encounter (e.g., keypad code mapping, active‑low row/col logic, debounce‑by‑design), and how did the LLM handle them?
-What would you do differently the next time you use an LLM in your workflow?</code></pre>
 
 
 </section>

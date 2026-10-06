@@ -1,8 +1,5 @@
 ---
 title: Lab 2
-format:
-  html:
-    output-file: index.html
 ---
 
 ::: {.callout-tip title="Annotated Report Template"}

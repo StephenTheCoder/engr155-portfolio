@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>Lab 4 – E155 Portfolio</title>
+<title>Lab 1 – E155 Portfolio</title>
 <style>
 /* Default styles provided by pandoc.
 ** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
@@ -25,41 +25,6 @@ ul.task-list li input[type="checkbox"] {
   width: 0.8em;
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
-}
-/* CSS for syntax highlighting */
-html { -webkit-text-size-adjust: 100%; }
-pre > code.sourceCode { white-space: pre; position: relative; }
-pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
-pre > code.sourceCode > span:empty { height: 1.2em; }
-.sourceCode { overflow: visible; }
-code.sourceCode > span { color: inherit; text-decoration: inherit; }
-div.sourceCode { margin: 1em 0; }
-pre.sourceCode { margin: 0; }
-@media screen {
-div.sourceCode { overflow: auto; }
-}
-@media print {
-pre > code.sourceCode { white-space: pre-wrap; }
-pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
-}
-pre.numberSource code
-  { counter-reset: source-line 0; }
-pre.numberSource code > span
-  { position: relative; left: -4em; counter-increment: source-line; }
-pre.numberSource code > span > a:first-child::before
-  { content: counter(source-line);
-    position: relative; left: -1em; text-align: right; vertical-align: baseline;
-    border: none; display: inline-block;
-    -webkit-touch-callout: none; -webkit-user-select: none;
-    -khtml-user-select: none; -moz-user-select: none;
-    -ms-user-select: none; user-select: none;
-    padding: 0 4px; width: 4em;
-  }
-pre.numberSource { margin-left: 3em;  padding-left: 4px; }
-div.sourceCode
-  {   }
-@media screen {
-pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
 }
 </style>
 
@@ -191,9 +156,13 @@ window.Quarto = {
   <li><a href="#design-and-testing-methodology" id="toc-design-and-testing-methodology" class="nav-link" data-scroll-target="#design-and-testing-methodology">Design and Testing Methodology</a></li>
   <li><a href="#technical-documentation" id="toc-technical-documentation" class="nav-link" data-scroll-target="#technical-documentation">Technical Documentation:</a>
   <ul class="collapse">
+  <li><a href="#block-diagram" id="toc-block-diagram" class="nav-link" data-scroll-target="#block-diagram">Block Diagram</a></li>
   <li><a href="#schematic" id="toc-schematic" class="nav-link" data-scroll-target="#schematic">Schematic</a></li>
   </ul></li>
-  <li><a href="#results-and-discussion" id="toc-results-and-discussion" class="nav-link" data-scroll-target="#results-and-discussion">Results and Discussion</a></li>
+  <li><a href="#results-and-discussion" id="toc-results-and-discussion" class="nav-link" data-scroll-target="#results-and-discussion">Results and Discussion</a>
+  <ul class="collapse">
+  <li><a href="#testbench-simulation" id="toc-testbench-simulation" class="nav-link" data-scroll-target="#testbench-simulation">Testbench Simulation</a></li>
+  </ul></li>
   <li><a href="#conclusion" id="toc-conclusion" class="nav-link" data-scroll-target="#conclusion">Conclusion</a></li>
   <li><a href="#ai-prototype-summary" id="toc-ai-prototype-summary" class="nav-link" data-scroll-target="#ai-prototype-summary">AI Prototype Summary</a></li>
   </ul>
@@ -204,7 +173,7 @@ window.Quarto = {
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title">Lab 4</h1>
+<h1 class="title">Lab 1</h1>
 </div>
 
 
@@ -231,7 +200,7 @@ window.Quarto = {
 </div>
 </div>
 <div class="callout-body-container callout-body">
-<p>The following is the lab report for lab 4 for Stephen Kanti Mahanty.</p>
+<p>The following is the lab report for lab 1 for Stephen Kanti Mahanty.</p>
 </div>
 </div>
 <section id="introduction" class="level2">
@@ -246,10 +215,10 @@ window.Quarto = {
 </div>
 </div>
 <div class="callout-body-container callout-body">
-<p>Using C code to make a digital speaker</p>
+<p>Soldering and testing the FPGA board.</p>
 </div>
 </div>
-<p>In this lab, a design was implemented on the MCU to demonstrate the ability of the speaker system to play Fur Elise by Beethoven as well as my own music. This required using a speaker system and an audio amplifier connected to the MCU, and learning how to read a datasheet to implement a timer and turn on a pin.</p>
+<p>In this lab, a design was implemented on the FPGA to demonstrate the functionality of the on-board high-speed oscillator by blinking one of the on-board LEDs. The high speed oscillator was configured at a frequency of 24 MHz and divided down using a counter to achieve a blinking frequency of ~2.4 Hz. A design was also implemented on the FPGA to configure a seven-segment display using four switches to display a number from 0 to 15. Finally, there were 2 LEDs enabled by switch logic that turn on and off depending on the state of the switches. All designes were tested using a testbench simulation in Questa. The design was then synthesized and implemented on the FPGA board.</p>
 </section>
 <section id="design-and-testing-methodology" class="level2">
 <h2 class="anchored" data-anchor-id="design-and-testing-methodology">Design and Testing Methodology</h2>
@@ -263,29 +232,18 @@ window.Quarto = {
 </div>
 </div>
 <div class="callout-body-container callout-body">
-<p>Explaining how I approached the design of this assignment from both a software and a hardware standpoint (as appropriate). Include how I tested the design.</p>
+<p>Explaining how I approached the design of this assignment from both a software and a hardware standpoint (as appropriate). Include how I tested your design.</p>
 </div>
 </div>
-<p>The MCU, an STM32, has a long datasheet which allows me to understand the product and use the required information to allow for sound to be generated via a speaker. For sound to be generated, a square wave must be an output of a pin and enter through an audio amplifier. To output this square wave, a timer (TIM6) was implemented on the STM32 and the datasheet was used to turn the pin on. After that point, the frequency and period were inputted and the square wave was generated by counting the amount of half-periods in the duration and turning on the pin at a given frequency. For rests, no square wave was generated.</p>
-<p>To actually play on the speaker, an audio amplifier was connected. The connection was based off of the audio amplifier (LM836) datasheet and included a potentiometer to change volume. The potentiometer was connected in parallel with a resistor to make use of more parts of the potentiometer. The schematic also makes use of various capacitors and resistors to reduce noise and connect to the speaker well.</p>
-<p>// TODO - UPDATE CALCULATIONS</p>
-<p>The calculation for 200 Hz is below</p>
-<details>
-<summary>
-Click to reveal calculations
-</summary>
-<span class="math display">\[\text{Half Period Counts} =  \frac{1000000}{2 \cdot 220} ~ 2273 \text{ counts}\]</span> <span class="math display">\[\text{Frequency} =  \frac{1000000}{2 \cdot 2273} ~ 219.9 \text{ Hz}\]</span>
-</details>
-<p>The calculation for 1000 Hz is below</p>
-<details>
-<summary>
-Click to reveal calculations
-</summary>
-<span class="math display">\[\text{Half Period Counts} =  \frac{1000000}{2 \cdot 1000} ~ 500 \text{ counts}\]</span> <span class="math display">\[\text{Frequency} =  \frac{1000000}{2 \cdot 500} ~ 1000 \text{ Hz}\]</span>
-</details>
-<p>The calculations, as well as the rest of the calculations (which are in 1% error) are in this <a href="https://docs.google.com/spreadsheets/d/1leSXSZfpqYPtqx9dM8q6qqET1fS6uXde/edit?usp=sharing&amp;ouid=107474147189031270673&amp;rtpof=true&amp;sd=true">Google Sheet</a>.</p>
-<p>Only checking 220 Hz and 1000 Hz is not enough, as the error depends on rounding (which is why 1000 Hz is exact). The song contains 1319 Hz, which is outside this interval, which means we need to check more values.</p>
-<p>Hardware was tested using physical displays, and was proven correct.</p>
+<p>The on-board high-speed oscillator (<code>HSOSC</code>) from the iCE40 UltraPlus primitive library was used to generate a clock signal at 24 MHz. Then, a counter was used to divide the high frequency clock signal down so that the blinking frequency could be easily visualized using one of the on-board LEDs. The design was developed using a simple clock divider module which drives the external LED.</p>
+<p>To calculate this value and the maximum count, the following formula was used: <span class="math display">\[ f_{out} = \frac{f_{HSOSC}}{\text{max\_count}} = \dfrac{48000000}{5000000} = 2.4 \text{Hz} \]</span></p>
+<p>Where <span class="math inline">\(f_{out}\)</span> is the desired output frequency, <span class="math inline">\(f_{in}\)</span> is the input frequency, and max_count is the maximum count value for the counter. The maximum count value was calculated to be 4,999,999 such that this equation works (as counter starts from 0).</p>
+<p>The hardware was soldered through a series of steps to ensure that the FPGA board was functioning correctly. The LEDs were verified to be functioning as expected. The seven-segment display circuit was designed using a set of resistors that limited the current to the display. The power and connections to the FPGA was done through a breadboard connector and a ribbon cable.</p>
+<p>The resistor calculations are done through the seven-segment datasheet. Knowing <span class="math inline">\(V_{dd} = 3.3V\)</span>, <span class="math inline">\(V_{f} = 2.0V\)</span>, and <span class="math inline">\(I_{f} = 8mA\)</span>, the resistor value is calculated as follows:</p>
+<p><span class="math display">\[ R = \frac{V_{dd} - V_{f}}{I_{f}} = \frac{3.3V - 2.0V}{8mA} = \frac{1.3V}{8mA} = 162.5 \Omega \]</span></p>
+<p>The closest stock value is 150 <span class="math inline">\(\Omega\)</span>, which is what was used in the design.</p>
+<p>To design the two LEDs controlled by switches, the given truth table was analyzed to determine the logic connecting the switches to the LEDs. The logic was implemented using a simple combinational logic circuit. The design was then tested using a testbench simulation in QuestaSim to verify that the LEDs turned on and off as expected based on the state of the switches.</p>
+<p>To design the software for the seven-segment display, the datasheets were analyzed and a seven-segment decoder was added. The idea is that the four switches comprise of the four bits of a binary number, and the seven-segment decoder converts that binary number into the appropriate signals to drive the seven-segment display. The design was then tested using a testbench simulation in QuestaSim to verify that the correct numbers were displayed on the seven-segment display based on the state of the switches.</p>
 </section>
 <section id="technical-documentation" class="level2">
 <h2 class="anchored" data-anchor-id="technical-documentation">Technical Documentation:</h2>
@@ -299,10 +257,29 @@ Click to reveal calculations
 </div>
 </div>
 <div class="callout-body-container callout-body">
-<p>Includes the link to a Git repository with the Verilog code and schematics of the circuits.</p>
+<p>Includes the link to a Git repository with the Verilog code, a block diagram of the design, and schematics of the circuits.</p>
 </div>
 </div>
-<p>The source code for the project can be found in the associated <a href="https://github.com/ENGR155/engr155-lab4/tree/main">Github repository</a>.</p>
+<p>The source code for the project can be found in the associated <a href="https://github.com/StephenTheCoder/ENGR155-Lab1">Github repository</a>.</p>
+<section id="block-diagram" class="level3">
+<h3 class="anchored" data-anchor-id="block-diagram">Block Diagram</h3>
+<div id="fig-block-diagram" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-block-diagram-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<details>
+<summary>
+Click to reveal block diagram
+</summary>
+<img src="images/lab1/blockdiagram.png" class="img-fluid figure-img">
+</details>
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-block-diagram-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;1: Block diagram of the Verilog design.
+</figcaption>
+</figure>
+</div>
+<p>The block diagram in <a href="#fig-block-diagram" class="quarto-xref">Figure&nbsp;1</a> demonstrates the overall architecture of the design. The design consists of a block connected to the seven-segment dispaly and resistors connecting the seven-segment LEDs to the FPGA.</p>
+</section>
 <section id="schematic" class="level3">
 <h3 class="anchored" data-anchor-id="schematic">Schematic</h3>
 <div id="fig-schematic" class="quarto-float quarto-figure quarto-figure-center anchored">
@@ -312,15 +289,55 @@ Click to reveal calculations
 <summary>
 Click to reveal schematic
 </summary>
-<img src="images/lab4/schematic.png" class="img-fluid figure-img">
+<img src="images/lab1/schematic.png" class="img-fluid figure-img">
 </details>
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-schematic-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Figure&nbsp;1: Schematic of the physical circuit.
+Figure&nbsp;2: Schematic of the physical circuit.
 </figcaption>
 </figure>
 </div>
-<p><a href="#fig-schematic" class="quarto-xref">Figure&nbsp;1</a> shows the physical layout of the design. It shows all the inputs and the outputs as well as the audio amplifier connections.</p>
+<p><a href="#fig-schematic" class="quarto-xref">Figure&nbsp;2</a> shows the physical layout of the design. It shows logic gates and connections between all the inputs and outputs. For the big block in the middle describing the seven-segment display, the full logic code is below, but it is pretty messy so I have it below:</p>
+<details>
+<pre><code>assign seg[0] =
+       (~s[3] &amp; ~s[1] &amp;  s[0])
+     | ( s[3] &amp;  s[2] &amp; ~s[0])
+     | ( s[3] &amp;  s[1] &amp;  s[0])
+     | ( s[2] &amp;  s[1] &amp; ~s[0]);
+
+assign seg[1] =
+       (~s[3] &amp; ~s[2] &amp; ~s[1] &amp;  s[0])
+     | (~s[3] &amp;  s[2] &amp; ~s[1] &amp; ~s[0])
+     | ( s[3] &amp; ~s[2] &amp;  s[1] &amp;  s[0])
+     | ( s[3] &amp;  s[2] &amp; ~s[1] &amp;  s[0]);
+
+assign seg[2] =
+       (~s[3] &amp; ~s[2] &amp; ~s[1] &amp;  s[0])
+     | (~s[3] &amp; ~s[2] &amp;  s[1] &amp; ~s[0])
+     | ( s[3] &amp;  s[2] &amp;  s[1])
+     | ( s[3] &amp;  s[2] &amp; ~s[0]);
+
+assign seg[3] =
+       (~s[3] &amp;  s[2] &amp; ~s[1] &amp; ~s[0])
+     | ( s[3] &amp; ~s[2] &amp;  s[1] &amp; ~s[0])
+     | (~s[2] &amp; ~s[1] &amp;  s[0])
+     | ( s[2] &amp;  s[1] &amp;  s[0]);
+
+assign seg[4] =
+       (~s[3] &amp;  s[2] &amp; ~s[1])
+     | (~s[3] &amp;  s[1] &amp;  s[0])
+     | ( s[3] &amp; ~s[2] &amp; ~s[1] &amp; s[0]);
+
+assign seg[5] =
+       (~s[3] &amp; ~s[2] &amp;  s[1])
+     | (~s[3] &amp;  s[1] &amp;  s[0])
+     | ( s[3] &amp;  s[2] &amp; ~s[1] &amp; s[0]);
+
+assign seg[6] =
+       (~s[3] &amp; ~s[2] &amp; ~s[1])
+     | (~s[3] &amp;  s[2] &amp;  s[1] &amp;  s[0])
+     | ( s[3] &amp;  s[2] &amp; ~s[1] &amp; ~s[0]);</code></pre>
+</details>
 </section>
 </section>
 <section id="results-and-discussion" class="level2">
@@ -338,8 +355,31 @@ Figure&nbsp;1: Schematic of the physical circuit.
 <p>Did you accomplish all of the prescribed tasks? If not, what are the shortcomings? How might you address them given more time? As appropriate, how did the design perform (e.g., How fast/accurate/reliable was it?).</p>
 </div>
 </div>
-<p>I did accomplish all of the prescribed tasks. The design successfully played a song of my choice and was also able to play Fur Elise with the provided code under the provided specs. Given more time, I would have liked to implement a better audio system, since it felt like the speakers could only play 8-bit-style music and not have much variety in songs. I think adding more speakers and functionality could allow for a stronger sound system that also sounds better.</p>
-<p>I do believe this lab was very confusing and hard to understand. The specs did not give much idea on how to work with the materials and the datasheet, and only a few tutorials, like the clock tutorial, helped me understand what to do and how to approach the lab. I do admit it took me a while to look through the datasheet and check for the specific pin configurations whereas the actual thinking portion of this lab was much easier to implement (it was just a string of functions that relied on a clock). I also do think we should be allowed to use AI or an online tool to automatically look up timer pinouts and register values, since I don’t see much meaningful skill by reading the datasheets; as it is, no interviewer would ask me how to read a datasheet. I believe it is useful for the first 10% of the work, but after that it becomes useless (it is useful to cross-check AI though).</p>
+<p>I did accomplish all of the prescribed tasks. The design successfully blinked an external LED using the on-board high-speed oscillator. The design also successfully displayed numbers from 0 to 15 on the seven-segment display based on the state of the four switches. The two LEDs controlled by switches also functioned as expected based on the truth table provided.</p>
+<p>Given more time, I would have liked to implement a more sophisticated counter to allow for a more precise output frequency. I would also want to add a second seven-segment display to display more numbers if I can. The current design only allows for the clock to be divided by powers of two, which limits the flexibility of the design. The design is still fast</p>
+<section id="testbench-simulation" class="level3">
+<h3 class="anchored" data-anchor-id="testbench-simulation">Testbench Simulation</h3>
+<details>
+<summary>
+Click to reveal testbench
+</summary>
+<img src="images/lab1/testbenchtop.png" class="img-fluid">
+</details>
+<details>
+<summary>
+Click to reveal testbench
+</summary>
+<img src="images/lab1/testbenchcounter.png" class="img-fluid">
+</details>
+<details>
+<summary>
+Click to reveal testbench
+</summary>
+<img src="images/lab1/testbenchseg.png" class="img-fluid">
+</details>
+<p>(Top) Screenshot of the QuestaSim simulation for the top-level module. (Middle) Screenshot of the QuestaSim simulation for the counter module. (Bottom) Screenshot of the QuestaSim simulation for the seven-segment display module.</p>
+<p>The design met all intended design objectives. <strong>?@fig-testbench-top</strong> shows a screenshot of the top-level QuestaSim simulation. If a more precise output frequency was desired, a more sophisticated counter could be developed. The current design only allows for the clock to be divided by powers of two.</p>
+</section>
 </section>
 <section id="conclusion" class="level2">
 <h2 class="anchored" data-anchor-id="conclusion">Conclusion</h2>
@@ -356,140 +396,52 @@ Figure&nbsp;1: Schematic of the physical circuit.
 <p>Briefly summarize what was done and how it performed. Also note how many hours you spent working on the lab.</p>
 </div>
 </div>
-<p>The design successfully played audio based on a note array. It performed well and I don’t see it deviating from its intended performance much. I spent a total of 14 hours working on this lab.</p>
+<p>The design successfully blinked an external LED using the on-board high-speed oscillator. I spent a total of twenty five hours working on this lab.</p>
 </section>
 <section id="ai-prototype-summary" class="level2">
 <h2 class="anchored" data-anchor-id="ai-prototype-summary">AI Prototype Summary</h2>
-<p>I asked Le Chat Mistral. It gave out the following:</p>
+<p>I asked GPT 5.5 Medium. It gave out the following:</p>
 <details>
 <summary>
-Click to reveal response
+Click to reveal spoiler
 </summary>
-<p>Timer options on the STM32L432KC</p>
-<table class="caption-top table">
-<colgroup>
-<col style="width: 20%">
-<col style="width: 20%">
-<col style="width: 20%">
-<col style="width: 20%">
-<col style="width: 20%">
-</colgroup>
-<thead>
-<tr class="header">
-<th>Timer</th>
-<th>Bus</th>
-<th>Width</th>
-<th>Output channels</th>
-<th>Notes</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td>TIM1</td>
-<td>APB2</td>
-<td>16-bit</td>
-<td>4 (+ complementary)</td>
-<td>Advanced/motor-control, overkill here</td>
-</tr>
-<tr class="even">
-<td><strong>TIM2</strong></td>
-<td>APB1</td>
-<td><strong>32-bit</strong></td>
-<td><strong>4 (CH1–CH4)</strong></td>
-<td>Best choice (see below)</td>
-</tr>
-<tr class="odd">
-<td>TIM6 / TIM7</td>
-<td>APB1</td>
-<td>16-bit</td>
-<td><strong>None</strong></td>
-<td>DAC-trigger only — <strong>cannot drive a pin</strong></td>
-</tr>
-<tr class="even">
-<td>TIM16 / TIM17</td>
-<td>APB2</td>
-<td>16-bit</td>
-<td>1 each</td>
-<td>Workable, but limited AF pin mappings</td>
-</tr>
-<tr class="odd">
-<td>LPTIM1 / LPTIM2</td>
-<td>—</td>
-<td>16-bit</td>
-<td>1 each</td>
-<td>Useful only if you must run in low-power modes</td>
-</tr>
-</tbody>
-</table>
-<p>Recommendation: TIM2</p>
-<p>TIM2 is the best fit for 220 Hz–1 kHz:</p>
-<ul>
-<li>It has four output-compare channels that map directly to GPIO pins via AF1: <strong>PA0 = TIM2_CH1, PA1 = TIM2_CH2, PA2 = TIM2_CH3, PA3 = TIM2_CH4</strong> — all present on the LQFP32 package. Note PA2/PA3 are USART2 TX/RX on the Nucleo-32, so <strong>PA0 or PA1 is the cleanest choice</strong> if you’re using the virtual COM port.</li>
-<li>32-bit auto-reload gives you enormous resolution at these low frequencies.</li>
-<li>It’s a general-purpose timer, so the pins are freed for other uses when idle.</li>
-</ul>
-<p>TIM6/TIM7 are the trap: they generate update events for the DAC but have no output channel routed to any pin.</p>
-<p>Formulae</p>
-<p><strong>Timer clock.</strong> The timer clock is <code>PCLK1</code> if the APB1 prescaler is 1, or <code>2 × PCLK1</code> if it’s greater than 1. In the standard 80 MHz configuration (SYSCLK 80 MHz, APB1 div 2 → PCLK1 = 40 MHz), <strong>TIM2 gets 80 MHz</strong>. Check your <code>SystemClock_Config()</code>.</p>
-<p><strong>Output frequency (PWM mode):</strong></p>
-<p><span class="math display">\[f_{out} = \frac{f_{TIM}}{(PSC+1)\cdot(ARR+1)}\]</span></p>
-<p><strong>Duty cycle:</strong> <span class="math inline">\(D = \frac{CCRx}{ARR+1}\)</span> (for 50% square wave, CCRx = (ARR+1)/2)</p>
-<p><strong>Toggle mode</strong> (if you use “toggle on compare” instead): <span class="math inline">\(f_{out} = \dfrac{f_{TIM}}{2\,(PSC+1)\,(ARR+1)}\)</span></p>
-<p><strong>Sizing example.</strong> With <span class="math inline">\(f_{TIM}\)</span> = 80 MHz, pick PSC = 79 → 1 MHz tick, so ARR = 10⁶/f − 1:</p>
-<table class="caption-top table">
-<thead>
-<tr class="header">
-<th>Target</th>
-<th>ARR</th>
-<th>Actual</th>
-<th>Resolution</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td>1 kHz</td>
-<td>999</td>
-<td>1000.00 Hz</td>
-<td>0.1%</td>
-</tr>
-<tr class="even">
-<td>220 Hz</td>
-<td>4545</td>
-<td>219.98 Hz</td>
-<td>~0.022%</td>
-</tr>
-</tbody>
-</table>
-<p>The 32-bit ARR means you could even use PSC = 0 and still fit 80 MHz/220 Hz ≈ 363,636 counts with room to spare — resolution is never a problem in this range.</p>
-<p>Registers to set</p>
-<ol type="1">
-<li><strong>Clock enable</strong> — <code>RCC-&gt;APB1ENR1</code> bit 0 (<code>TIM2EN</code>)</li>
-<li><strong>GPIO (PA0 as example)</strong> — <code>GPIOA-&gt;MODER</code>: PA0 = <code>10</code> (alternate function); <code>GPIOA-&gt;AFRL</code>: AF0 field = <code>0001</code> (AF1 = TIM2_CH1); <code>GPIOA-&gt;OSPEEDR</code> as desired</li>
-<li><strong>Time base</strong> — <code>TIM2-&gt;PSC</code> and <code>TIM2-&gt;ARR</code>; <code>TIM2-&gt;CR1</code> bit 7 (<code>ARPE</code>, preload ARR)</li>
-<li><strong>Force an update event</strong> — <code>TIM2-&gt;EGR</code> bit 0 (<code>UG</code>): PSC only latches on the next update event, so do this after writing PSC</li>
-<li><strong>Channel config (PWM mode 1)</strong> — <code>TIM2-&gt;CCMR1</code>: <code>OC1M</code> (bits 6:4) = <code>110</code>, <code>OC1PE</code> (bit 3) = 1; <code>TIM2-&gt;CCR1</code> = duty; <code>TIM2-&gt;CCER</code> bit 0 (<code>CC1E</code>) = 1 to route the channel to the pin</li>
-<li><strong>Start</strong> — <code>TIM2-&gt;CR1</code> bit 0 (<code>CEN</code>)</li>
-<li>Optional: <code>TIM2-&gt;DIER</code> bit 0 (<code>UIE</code>) plus NVIC if you want an interrupt each period</li>
-</ol>
-<p>Minimal bare-metal example (PA0, 220 Hz, 50% duty, assumed 80 MHz timer clock):</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb1"><pre class="sourceCode c code-with-copy"><code class="sourceCode c"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>RCC<span class="op">-&gt;</span>APB1ENR1 <span class="op">|=</span> RCC_APB1ENR1_TIM2EN<span class="op">;</span></span>
-<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>RCC<span class="op">-&gt;</span>AHB2ENR  <span class="op">|=</span> RCC_AHB2ENR_GPIOAEN<span class="op">;</span></span>
-<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>GPIOA<span class="op">-&gt;</span>MODER <span class="op">=</span> <span class="op">(</span>GPIOA<span class="op">-&gt;</span>MODER <span class="op">&amp;</span> <span class="op">~</span><span class="dv">3</span><span class="bu">u</span><span class="op">)</span> <span class="op">|</span> <span class="op">(</span><span class="dv">2</span><span class="bu">u</span> <span class="op">&lt;&lt;</span> <span class="dv">0</span><span class="op">);</span>   <span class="co">// PA0 = AF</span></span>
-<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>GPIOA<span class="op">-&gt;</span>AFRL  <span class="op">=</span> <span class="op">(</span>GPIOA<span class="op">-&gt;</span>AFRL  <span class="op">&amp;</span> <span class="op">~</span><span class="bn">0xF</span><span class="bu">u</span><span class="op">)</span> <span class="op">|</span> <span class="op">(</span><span class="dv">1</span><span class="bu">u</span> <span class="op">&lt;&lt;</span> <span class="dv">0</span><span class="op">);</span> <span class="co">// PA0 = AF1 (TIM2_CH1)</span></span>
-<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a>TIM2<span class="op">-&gt;</span>PSC <span class="op">=</span> <span class="dv">79</span><span class="op">;</span>                 <span class="co">// 80 MHz / 80 = 1 MHz tick</span></span>
-<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a>TIM2<span class="op">-&gt;</span>ARR <span class="op">=</span> <span class="dv">4545</span><span class="op">;</span>               <span class="co">// 1 MHz / (4545+1) ≈ 220 Hz</span></span>
-<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a>TIM2<span class="op">-&gt;</span>CCR1 <span class="op">=</span> <span class="op">(</span><span class="dv">4545</span> <span class="op">+</span> <span class="dv">1</span><span class="op">)</span> <span class="op">/</span> <span class="dv">2</span><span class="op">;</span>    <span class="co">// 50% duty</span></span>
-<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a>TIM2<span class="op">-&gt;</span>EGR  <span class="op">=</span> TIM_EGR_UG<span class="op">;</span>        <span class="co">// latch PSC immediately</span></span>
-<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a>TIM2<span class="op">-&gt;</span>CCMR1 <span class="op">=</span> <span class="op">(</span><span class="dv">6</span> <span class="op">&lt;&lt;</span> <span class="dv">4</span><span class="op">)</span> <span class="op">|</span> TIM_CCMR1_OC1PE<span class="op">;</span>   <span class="co">// PWM mode 1, preload</span></span>
-<span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a>TIM2<span class="op">-&gt;</span>CCER  <span class="op">=</span> TIM_CCER_CC1E<span class="op">;</span>                <span class="co">// enable output on pin</span></span>
-<span id="cb1-13"><a href="#cb1-13" aria-hidden="true" tabindex="-1"></a>TIM2<span class="op">-&gt;</span>CR1  <span class="op">|=</span> TIM_CR1_ARPE <span class="op">|</span> TIM_CR1_CEN<span class="op">;</span>   <span class="co">// enable</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<p>Change only <code>ARR</code>/<code>CCR1</code> to sweep the 220 Hz–1 kHz range. Two gotchas: keep <code>ARPE</code> set so ARR updates take effect at the end of the period (glitch-free), and remember the doubled APB1 timer clock when computing PSC — if your APB1 prescaler is 1, the timer clock is 40 MHz, not 80 MHz.</p>
+<pre><code>module blinky (
+    output logic led
+);
+
+    // Internal 48 MHz high-frequency oscillator signal
+    logic clk;
+
+    // Enable the internal high-speed oscillator
+    SB_HFOSC #(
+        .CLKHF_DIV("0b00")   // 48 MHz output
+    ) hfosc_inst (
+        .CLKHFPU(1'b1),      // Power up oscillator
+        .CLKHFEN(1'b1),      // Enable oscillator output
+        .CLKHF(clk)
+    );
+
+    // For a 2 Hz blink:
+    // LED toggles twice per full cycle, so toggle at 4 Hz.
+    // 48 MHz / 4 = 12,000,000 cycles per toggle.
+    localparam int unsigned MAX_COUNT = 12_000_000 - 1;
+
+    logic [$clog2(MAX_COUNT + 1)-1:0] counter = '0;
+
+    always_ff @(posedge clk) begin
+        if (counter == MAX_COUNT) begin
+            counter &lt;= '0;
+            led     &lt;= ~led;
+        end else begin
+            counter &lt;= counter + 1'b1;
+        end
+    end
+
+endmodule</code></pre>
 </details>
-<p>I think the quality of the output worked well since I was able to see the specific timers to turn on and the pathways to turn on the timers and the specific registers to turn on. The quality of the output also was improved due to tables and comparisons to help me understand each design choice. The speed is much better than the reference manual, since it automatically checks and scans the reference manual and reads the datasheet for me, which is really nice. It does point me in the right direction since it gives me the tool immediately whereas Ctrl-F is a lot harder to check specific sections (as the reference manual is so big that I can’t search everything at once).</p>
-<p>The LLM did generate code for me, but it was not complete. My setup actually has drivers and is complete, which is better and actually turns on. The LLM’s response is less structured but also tells me what to turn on and how, so it is a bit easier that way for someone who might not know anything about C. The LLM’s explanation is better than my reasoning, as I chose my timer as it was simple and easy to implement, whereas the LLM chose its timer for its abilities. The document search is better and I think the LLM is better at this than doing HDL since most of this lab was reading documents.</p>
-<p>I would use AI in the future for these sorts of readings as they improve my speed and efficiency, and I would likely get fired if I didn’t lol.</p>
+<p>The code was correct and worked fine in Radiant, and was able to synthesize properly. The quality of the output was good, and the code was well-structured and easy to understand. The code used a high-frequency oscillator to generate a clock signal, which was then divided down using a counter to achieve the desired blinking frequency for the LED. This is the same way that was used in the original design. Overall, the code was effective in achieving the desired functionality of blinking an LED at a specified frequency.</p>
+<p>One new line was the <code>logic [$clog2(MAX_COUNT + 1)-1:0] counter = '0;</code> line, which was a more efficient way to declare the counter variable. I had not learned about this before, so it was interesting to look at and worth it to use in the future.</p>
+<p>I think using an LLM to help me code is very useful, as I can analyze the code and learn from it whilst being more productive. I can also use it to help me debug my code, as it can point out errors and suggest fixes. Overall, I think using an LLM to help me code is a unique idea and I may plan to use it in the future. In the future, I will try to optimize my LLM output to conserve tokens whilst also making proper statements.</p>
 
 
 </section>

@@ -39,7 +39,7 @@
     "href": "labs/lab5.html#conclusion",
     "title": "Lab 5",
     "section": "Conclusion",
-    "text": "Conclusion\n\n\n\n\n\n\nNoteConclusion\n\n\n\nBriefly summarize what was done and how it performed. Also note how many hours you spent working on the lab.\n\n\nThe design successfully displayed the speed of the motor using interrupts. I spent a total of fifteen hours working on this lab."
+    "text": "Conclusion\n\n\n\n\n\n\nNoteConclusion\n\n\n\nBriefly summarize what was done and how it performed. Also note how many hours you spent working on the lab.\n\n\nThe design successfully displayed the speed of the motor using interrupts. The motor performed well when running on a given frequency, and gave proper values that worked for me. I spent a total of twelve hours working on this lab."
   },
   {
     "objectID": "labs/lab5.html#ai-prototype-summary",

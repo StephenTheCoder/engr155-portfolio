@@ -221,6 +221,7 @@ window.Quarto = {
 </header>
 
 
+<!-- Recovered from published HTML at commit 74aecb388263b078a9a4d0da348c04b87e4c3259; original source formatting and unpublished content are unavailable. -->
 <div class="callout callout-style-default callout-tip callout-titled" title="Annotated Report Template">
 <div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
@@ -274,14 +275,24 @@ window.Quarto = {
 <summary>
 Click to reveal calculations
 </summary>
-<span class="math display">\[\text{Half Period Counts} =  \frac{1000000}{2 \cdot 220} ~ 2273 \text{ counts}\]</span> <span class="math display">\[\text{Frequency} =  \frac{1000000}{2 \cdot 2273} ~ 219.9 \text{ Hz}\]</span>
+<p><span class="math display">\[
+\text{Half Period Counts} =  \frac{1000000}{2 \cdot 220} ~ 2273 \text{ counts}
+\]</span></p>
+<p><span class="math display">\[
+\text{Frequency} =  \frac{1000000}{2 \cdot 2273} ~ 219.9 \text{ Hz}
+\]</span></p>
 </details>
 <p>The calculation for 1000 Hz is below</p>
 <details>
 <summary>
 Click to reveal calculations
 </summary>
-<span class="math display">\[\text{Half Period Counts} =  \frac{1000000}{2 \cdot 1000} ~ 500 \text{ counts}\]</span> <span class="math display">\[\text{Frequency} =  \frac{1000000}{2 \cdot 500} ~ 1000 \text{ Hz}\]</span>
+<p><span class="math display">\[
+\text{Half Period Counts} =  \frac{1000000}{2 \cdot 1000} ~ 500 \text{ counts}
+\]</span></p>
+<p><span class="math display">\[
+\text{Frequency} =  \frac{1000000}{2 \cdot 500} ~ 1000 \text{ Hz}
+\]</span></p>
 </details>
 <p>The calculations, as well as the rest of the calculations (which are in 1% error) are in this <a href="https://docs.google.com/spreadsheets/d/1leSXSZfpqYPtqx9dM8q6qqET1fS6uXde/edit?usp=sharing&amp;ouid=107474147189031270673&amp;rtpof=true&amp;sd=true">Google Sheet</a>.</p>
 <p>Only checking 220 Hz and 1000 Hz is not enough, as the error depends on rounding (which is why 1000 Hz is exact). The song contains 1319 Hz, which is outside this interval, which means we need to check more values.</p>
@@ -305,22 +316,13 @@ Click to reveal calculations
 <p>The source code for the project can be found in the associated <a href="https://github.com/ENGR155/engr155-lab4/tree/main">Github repository</a>.</p>
 <section id="schematic" class="level3">
 <h3 class="anchored" data-anchor-id="schematic">Schematic</h3>
-<div id="fig-schematic" class="quarto-float quarto-figure quarto-figure-center anchored">
-<figure class="quarto-float quarto-float-fig figure">
-<div aria-describedby="fig-schematic-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<details>
-<summary>
-Click to reveal schematic
-</summary>
-<img src="images/lab4/schematic.png" class="img-fluid figure-img">
-</details>
-</div>
-<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-schematic-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Figure&nbsp;1: Schematic of the physical circuit.
-</figcaption>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="images/lab4/schematic.png" class="img-fluid figure-img"></p>
+<figcaption>Figure 1: Schematic of the physical circuit.</figcaption>
 </figure>
 </div>
-<p><a href="#fig-schematic" class="quarto-xref">Figure&nbsp;1</a> shows the physical layout of the design. It shows all the inputs and the outputs as well as the audio amplifier connections.</p>
+<p><a href="#fig-schematic">Figure 1</a> shows the physical layout of the design. It shows all the inputs and the outputs as well as the audio amplifier connections.</p>
 </section>
 </section>
 <section id="results-and-discussion" class="level2">
@@ -376,48 +378,108 @@ Click to reveal response
 </colgroup>
 <thead>
 <tr class="header">
-<th>Timer</th>
-<th>Bus</th>
-<th>Width</th>
-<th>Output channels</th>
-<th>Notes</th>
+<th>
+Timer
+</th>
+<th>
+Bus
+</th>
+<th>
+Width
+</th>
+<th>
+Output channels
+</th>
+<th>
+Notes
+</th>
 </tr>
 </thead>
 <tbody>
 <tr class="odd">
-<td>TIM1</td>
-<td>APB2</td>
-<td>16-bit</td>
-<td>4 (+ complementary)</td>
-<td>Advanced/motor-control, overkill here</td>
+<td>
+TIM1
+</td>
+<td>
+APB2
+</td>
+<td>
+16-bit
+</td>
+<td>
+4 (+ complementary)
+</td>
+<td>
+Advanced/motor-control, overkill here
+</td>
 </tr>
 <tr class="even">
-<td><strong>TIM2</strong></td>
-<td>APB1</td>
-<td><strong>32-bit</strong></td>
-<td><strong>4 (CH1–CH4)</strong></td>
-<td>Best choice (see below)</td>
+<td>
+<strong>TIM2</strong>
+</td>
+<td>
+APB1
+</td>
+<td>
+<strong>32-bit</strong>
+</td>
+<td>
+<strong>4 (CH1–CH4)</strong>
+</td>
+<td>
+Best choice (see below)
+</td>
 </tr>
 <tr class="odd">
-<td>TIM6 / TIM7</td>
-<td>APB1</td>
-<td>16-bit</td>
-<td><strong>None</strong></td>
-<td>DAC-trigger only — <strong>cannot drive a pin</strong></td>
+<td>
+TIM6 / TIM7
+</td>
+<td>
+APB1
+</td>
+<td>
+16-bit
+</td>
+<td>
+<strong>None</strong>
+</td>
+<td>
+DAC-trigger only — <strong>cannot drive a pin</strong>
+</td>
 </tr>
 <tr class="even">
-<td>TIM16 / TIM17</td>
-<td>APB2</td>
-<td>16-bit</td>
-<td>1 each</td>
-<td>Workable, but limited AF pin mappings</td>
+<td>
+TIM16 / TIM17
+</td>
+<td>
+APB2
+</td>
+<td>
+16-bit
+</td>
+<td>
+1 each
+</td>
+<td>
+Workable, but limited AF pin mappings
+</td>
 </tr>
 <tr class="odd">
-<td>LPTIM1 / LPTIM2</td>
-<td>—</td>
-<td>16-bit</td>
-<td>1 each</td>
-<td>Useful only if you must run in low-power modes</td>
+<td>
+LPTIM1 / LPTIM2
+</td>
+<td>
+—
+</td>
+<td>
+16-bit
+</td>
+<td>
+1 each
+</td>
+<td>
+Useful only if you must run in low-power modes
+</td>
 </tr>
 </tbody>
 </table>
@@ -432,31 +494,57 @@ Click to reveal response
 <p>Formulae</p>
 <p><strong>Timer clock.</strong> The timer clock is <code>PCLK1</code> if the APB1 prescaler is 1, or <code>2 × PCLK1</code> if it’s greater than 1. In the standard 80 MHz configuration (SYSCLK 80 MHz, APB1 div 2 → PCLK1 = 40 MHz), <strong>TIM2 gets 80 MHz</strong>. Check your <code>SystemClock_Config()</code>.</p>
 <p><strong>Output frequency (PWM mode):</strong></p>
-<p><span class="math display">\[f_{out} = \frac{f_{TIM}}{(PSC+1)\cdot(ARR+1)}\]</span></p>
+<p><span class="math display">\[
+f_{out} = \frac{f_{TIM}}{(PSC+1)\cdot(ARR+1)}
+\]</span></p>
 <p><strong>Duty cycle:</strong> <span class="math inline">\(D = \frac{CCRx}{ARR+1}\)</span> (for 50% square wave, CCRx = (ARR+1)/2)</p>
 <p><strong>Toggle mode</strong> (if you use “toggle on compare” instead): <span class="math inline">\(f_{out} = \dfrac{f_{TIM}}{2\,(PSC+1)\,(ARR+1)}\)</span></p>
 <p><strong>Sizing example.</strong> With <span class="math inline">\(f_{TIM}\)</span> = 80 MHz, pick PSC = 79 → 1 MHz tick, so ARR = 10⁶/f − 1:</p>
 <table class="caption-top table">
 <thead>
 <tr class="header">
-<th>Target</th>
-<th>ARR</th>
-<th>Actual</th>
-<th>Resolution</th>
+<th>
+Target
+</th>
+<th>
+ARR
+</th>
+<th>
+Actual
+</th>
+<th>
+Resolution
+</th>
 </tr>
 </thead>
 <tbody>
 <tr class="odd">
-<td>1 kHz</td>
-<td>999</td>
-<td>1000.00 Hz</td>
-<td>0.1%</td>
+<td>
+1 kHz
+</td>
+<td>
+999
+</td>
+<td>
+1000.00 Hz
+</td>
+<td>
+0.1%
+</td>
 </tr>
 <tr class="even">
-<td>220 Hz</td>
-<td>4545</td>
-<td>219.98 Hz</td>
-<td>~0.022%</td>
+<td>
+220 Hz
+</td>
+<td>
+4545
+</td>
+<td>
+219.98 Hz
+</td>
+<td>
+~0.022%
+</td>
 </tr>
 </tbody>
 </table>

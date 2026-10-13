@@ -241,6 +241,21 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p>Most the design required reading the datasheets to understand how communication protocols work. I was able to use various datasheets to understand how to implement the SPI and UART protocols. I used SPI to read data from the temperature sensor, and UART to send data to a webpage to control the LED. I tested the design by using an oscilloscope verify that the SPI communication was working correctly.</p>
 <p>Part of the lab required me to know how to turn bits on and off using SPI as well as sending data using MISO and MOSI whilst learning about clock polarities and chip enables. I also learned about UART and how to send data using the TX and RX pins. I was able to use a webpage to control the LED by sending data over UART.</p>
 <p>The implementation of the webpage was done using HTML. The webpage was able to send data to the MCU using UART, which would then control the LED. The webpage also displayed the temperature data read from the sensor using SPI. The temperature data read was displayed in three resolutions that one can alternate with.</p>
+<div id="fig-main-flow" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-main-flow-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<details>
+<summary>
+Click to reveal Website
+</summary>
+<img src="images/lab6/website.png" class="img-fluid figure-img">
+</details>
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-main-flow-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;1: Main Trace.
+</figcaption>
+</figure>
+</div>
 </section>
 <section id="technical-documentation" class="level2">
 <h2 class="anchored" data-anchor-id="technical-documentation">Technical Documentation:</h2>
@@ -271,7 +286,7 @@ Click to reveal trace
 </details>
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-main-flow-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Figure&nbsp;1: Main Trace.
+Figure&nbsp;2: Main Trace.
 </figcaption>
 </figure>
 </div>
@@ -286,7 +301,7 @@ Click to reveal trace
 </details>
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-interrupt-flow-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Figure&nbsp;2: Detailed Trace.
+Figure&nbsp;3: Detailed Trace.
 </figcaption>
 </figure>
 </div>
@@ -305,11 +320,11 @@ Click to reveal schematic
 </details>
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-schematic-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Figure&nbsp;3: Schematic of the physical circuit.
+Figure&nbsp;4: Schematic of the physical circuit.
 </figcaption>
 </figure>
 </div>
-<p><a href="#fig-schematic" class="quarto-xref">Figure&nbsp;3</a> shows the physical layout of the design. It shows logic gates and connections between all the inputs and outputs.</p>
+<p><a href="#fig-schematic" class="quarto-xref">Figure&nbsp;4</a> shows the physical layout of the design. It shows logic gates and connections between all the inputs and outputs.</p>
 </section>
 </section>
 <section id="results-and-discussion" class="level2">
